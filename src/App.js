@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react"
+import "./App.css"
+import useSetDarkMode from "./hooks/useSetDarkMode"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const {isDarkMode, handleDarkMode} = useSetDarkMode()
+	return (
+		<div className={`${isDarkMode && "dark"}`}>
+      <button onClick={handleDarkMode}>toogle dark and white mode</button>
+			<h1 className="text-red-800 dark:text-green-800">hello world!</h1>
+		</div>
+	)
 }
 
-export default App;
+export default App
