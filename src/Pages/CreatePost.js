@@ -6,7 +6,7 @@ import auth from "../firebase.init"
 const CreatePost = () => {
 	const [user] = useAuthState(auth)
 	const [jwtToken, setJwtToken] = useState(null)
-    const location = useLocation()
+	const location = useLocation()
 	useEffect(() => {
 		const token = localStorage.getItem("accessToken")
 		if (token) {
@@ -20,15 +20,18 @@ const CreatePost = () => {
 		const postTitle = event.target.title.value
 		console.log(user.email)
 		console.log(jwtToken)
-        if(!user.email || !jwtToken) {
-            return <Navigate state={{from: location}} to={'/login'}></Navigate>
-        }
+		if (!user.email || !jwtToken) {
+			return (
+				<Navigate state={{ from: location }} to={"/login"}></Navigate>
+			)
+		}
 
 		fetch("http://localhost:5000/post", {
 			body: JSON.stringify({
 				postBody: postBody,
 				postTitle: postTitle,
 				author: user.email,
+				authorDisplayName: user.displayName,
 			}),
 			headers: {
 				"Content-Type": "application/json",
@@ -53,6 +56,7 @@ const CreatePost = () => {
 						Post Title
 					</label>
 					<input
+						placeholder="Title"
 						type="text"
 						id="base-input"
 						name="title"
