@@ -2,6 +2,7 @@ import React from "react"
 
 const Post = ({
 	post: { author, authorDisplayName, postBody, postTitle, _id },
+	children,
 }) => {
 	return (
 		<div className="w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -12,6 +13,14 @@ const Post = ({
 			/>
 
 			<div className="p-5">
+				<div>
+					<p className="text-gray-900 dark:text-white text-sm">
+						{authorDisplayName}
+					</p>
+					<p className="text-gray-900 dark:text-white text-sm">
+						{authorDisplayName}
+					</p>
+				</div>
 				<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 					{postTitle}
 				</h5>
@@ -37,6 +46,9 @@ const Post = ({
 						></path>
 					</svg>
 				</button>
+			<div className='mt-7 flex justify-between'>
+				{children}
+			</div>
 			</div>
 		</div>
 	)

@@ -7,7 +7,7 @@ const usePosts = () => {
 			.then((response) => response.json())
 			.then((data) => setPosts(data))
 	}, [])
-	return posts
+	return {posts, setPosts}
 }
 
 export default usePosts

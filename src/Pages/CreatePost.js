@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
-import { Navigate, useLocation } from "react-router-dom"
+import toast from "react-hot-toast"
+import { Navigate, useLocation, useNavigate } from "react-router-dom"
 import auth from "../firebase.init"
 import useJwt from "../hooks/useJwt"
 
 const CreatePost = () => {
 	const [user] = useAuthState(auth)
 	const {jwtToken} = useJwt()
+	const navigate = useNavigate()
     const location = useLocation()
 	const handleSubmit = (event) => {
+		
 		event.preventDefault()
 		const postBody = event.target.post.value
 		const postTitle = event.target.title.value
@@ -32,7 +35,11 @@ const CreatePost = () => {
 			method: "post",
 		})
 			.then((response) => response.json())
-			.then((data) => console.log(data))
+			.then((data) =>{
+
+				toast.success('Posted successfully')
+				navigate('/')
+			}).catch(() => toast.error('something went wrong'))
 	}
 	return (
 		<div className="h-[90vh] flex justify-center items-center">

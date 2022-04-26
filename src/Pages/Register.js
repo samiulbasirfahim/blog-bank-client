@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import React, { useEffect } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
 import toast from "react-hot-toast"
@@ -17,7 +17,7 @@ const Register = () => {
 			createToken(user.email)
 			navigate(from)
 		}
-	},[user])
+	}, [user])
 	const registerSubmit = (event) => {
 		event.preventDefault()
 		const email = event.target.email.value
@@ -30,19 +30,21 @@ const Register = () => {
 			toast.error("Password mismatch")
 		} else {
 			createUserWithEmailAndPassword(auth, email, password)
-				.then((user) => {
-					toast.success('Register successful')
+				.then(async (user) => {
+					await updateProfile(auth.currentUser, {
+						displayName: first_name + " " + last_name,
+					})
+					toast.success("Register successful")
 				})
 				.catch((error) => {
 					console.log(error.code)
-					if (error.code === 'auth/email-already-in-use'){
-						toast.error('Email already in use')
+					if (error.code === "auth/email-already-in-use") {
+						toast.error("Email already in use")
 						event.target.reset()
-					} else if (error.code === "auth/weak-password"){
-						toast.error('Your password is so weak')
-					}
-					else {
-						toast.error('something went wrong')
+					} else if (error.code === "auth/weak-password") {
+						toast.error("Your password is so weak")
+					} else {
+						toast.error("something went wrong")
 					}
 				})
 		}
@@ -149,7 +151,10 @@ const Register = () => {
 					Register
 				</button>
 				<div className="mt-2">
-					<Link to="/login" className="text-blue-800 dark:text-green-600">
+					<Link
+						to="/login"
+						className="text-blue-800 dark:text-green-600"
+					>
 						Already have an account?{" "}
 					</Link>
 				</div>

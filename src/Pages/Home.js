@@ -4,7 +4,7 @@ import usePosts from "../hooks/usePosts"
 import Post from "../Shared/Post"
 
 const Home = () => {
-	const posts = usePosts()
+	const {posts} = usePosts()
 	return (
 		<div className="min-h-screen">
 			<div className=" w-[95%] md:w-2/4 grid mx-auto justify-items-center gap-6">

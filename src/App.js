@@ -9,6 +9,7 @@ import Register from "./Pages/Register"
 import SendResetPassMail from "./Pages/SendResetPassMail"
 import Header from "./Shared/Header/Header"
 import RequireAuth from "./Shared/RequireAuth/RequireAuth"
+import RequireMailVerify from "./Shared/RequireAuth/RequireMailVerify"
 
 function App() {
 	const { darkMode, handleDarkMode } = useSetDarkMode()
@@ -20,19 +21,15 @@ function App() {
 			></Header>
 			<Routes>
 				<Route path={"/login"} element={<Login></Login>}></Route>
-				<Route path={"/reset-password"} element={<SendResetPassMail/>}></Route>
+				<Route
+					path={"/reset-password"}
+					element={<SendResetPassMail />}
+				></Route>
 				<Route
 					path={"/register"}
 					element={<Register></Register>}
 				></Route>
-				<Route
-					path="post"
-					element={
-						<RequireAuth>
-							<CreatePost></CreatePost>
-						</RequireAuth>
-					}
-				></Route>
+
 				<Route
 					path="/managePosts"
 					element={
@@ -44,9 +41,9 @@ function App() {
 				<Route
 					path="/new-post"
 					element={
-						<RequireAuth>
+						<RequireMailVerify>
 							<CreatePost />
-						</RequireAuth>
+						</RequireMailVerify>
 					}
 				></Route>
 				<Route
