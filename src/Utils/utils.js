@@ -10,8 +10,7 @@ const createToken = (email, from) => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data)
-                localStorage.setItem("accessToken", data.token)
+				localStorage.setItem("accessToken", data.token)
 			})
 	}
 }
