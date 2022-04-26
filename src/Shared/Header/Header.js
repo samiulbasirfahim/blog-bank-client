@@ -7,7 +7,7 @@ import { signOut } from "firebase/auth"
 const Header = ({ darkModeHandler, isDarkMode }) => {
 	const [user] = useAuthState(auth)
 	return (
-		<div className="h-[8vh]  bg-gray-300 dark:bg-gray-600 ">
+		<div className="h-[8vh]  bg-gray-300 dark:bg-gray-600 shadow-blue-100 dark:shadow-gray-700 shadow-2xl">
 			<header className="h-full px-2 flex items-center justify-between container mx-auto">
 				<nav>
 					<Link
