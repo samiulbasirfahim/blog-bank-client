@@ -2,6 +2,7 @@ import { Toaster } from "react-hot-toast"
 import { Route, Routes } from "react-router-dom"
 import useSetDarkMode from "./hooks/useSetDarkMode"
 import CreatePost from "./Pages/CreatePost"
+import EditPost from "./Pages/EditPost"
 import Home from "./Pages/Home"
 import Login from "./Pages/Login"
 import ManagePost from "./Pages/ManagePost/ManagePost"
@@ -29,31 +30,37 @@ function App() {
 					path={"/register"}
 					element={<Register></Register>}
 				></Route>
-
+				<Route
+					path="/post-edit/:postId"
+					element={
+						<RequireAuth>
+							<RequireMailVerify>
+								<EditPost></EditPost>
+							</RequireMailVerify>
+						</RequireAuth>
+					}
+				></Route>
 				<Route
 					path="/managePosts"
 					element={
 						<RequireAuth>
-							<ManagePost></ManagePost>
+							<RequireMailVerify>
+								<ManagePost></ManagePost>
+							</RequireMailVerify>
 						</RequireAuth>
 					}
 				></Route>
 				<Route
 					path="/new-post"
 					element={
-						<RequireMailVerify>
-							<CreatePost />
-						</RequireMailVerify>
-					}
-				></Route>
-				<Route
-					path={"/"}
-					element={
 						<RequireAuth>
-							<Home></Home>
+							<RequireMailVerify>
+								<CreatePost></CreatePost>
+							</RequireMailVerify>
 						</RequireAuth>
 					}
 				></Route>
+				<Route path={"/"} element={<Home></Home>}></Route>
 			</Routes>
 			<Toaster></Toaster>
 		</div>

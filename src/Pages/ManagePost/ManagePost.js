@@ -1,10 +1,11 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import useJwt from "../../hooks/useJwt"
 import useMyposts from "../../hooks/useMyPosts"
 import Post from "../../Shared/Post"
 
 const ManagePost = () => {
+	const location = useLocation()
 	const { jwtToken } = useJwt()
 	const { posts, setPosts } = useMyposts()
 	const manageDeletePosts = (id) => {
@@ -12,19 +13,26 @@ const ManagePost = () => {
 			"are you sure to delete this post?"
 		)
 		if (confirmDelete) {
-			fetch("http://localhost:5000/deletePost/" + id, {
-				headers: {
-					"content-type": "application/json",
-					authorization: "Bearer " + jwtToken,
-				},
+			fetch(
+				"https://blog-post-server-143.herokuapp.com/deletePost/" + id,
+				{
+					headers: {
+						"content-type": "application/json",
+						authorization: "Bearer " + jwtToken,
+					},
 
-				method: "delete",
-			}).then(response => response.json()).then(data => {
-				if (data.deleteCount !== 0) {
-					const remaining = posts.filter(post => post._id !== id)
-					setPosts(remaining)
+					method: "delete",
 				}
-			})
+			)
+				.then((response) => response.json())
+				.then((data) => {
+					if (data.deleteCount !== 0) {
+						const remaining = posts.filter(
+							(post) => post._id !== id
+						)
+						setPosts(remaining)
+					}
+				})
 		}
 	}
 
@@ -33,6 +41,7 @@ const ManagePost = () => {
 			<div className=" w-[95%] md:w-2/4 grid mx-auto justify-items-center gap-6">
 				<div className=" w-full grid">
 					<Link
+						state={{ from: location }}
 						className="bg-gray-200 dark:bg-gray-600 mt-8 py-4 rounded-md text-center"
 						to="/new-post"
 					>
@@ -46,9 +55,13 @@ const ManagePost = () => {
 				)}
 				{posts.map((post) => (
 					<Post key={post._id} post={post}>
-						<button className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+						<Link
+							state={{ from: location }}
+							to={`/post-edit/${post._id}`}
+							className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+						>
 							Edit
-						</button>
+						</Link>
 						<button
 							onClick={() => manageDeletePosts(post._id)}
 							className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

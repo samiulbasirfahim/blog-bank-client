@@ -6,19 +6,19 @@ const Post = ({
 }) => {
 	return (
 		<div className="w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-			<img
+			{/* <img
 				className="rounded-t-lg"
 				src="https://i.ibb.co/THdW8zd/pexels-lucilene-silva-4069535.jpg"
 				alt=""
-			/>
+			/> */}
 
 			<div className="p-5">
-				<div className="flex justify-between">
-					<p className="text-gray-900 dark:text-white text-sm">
+				<div className="mt-2 mb-6">
+					<p className="text-gray-900 dark:text-white text-center font-bold text-xl">
 						{authorDisplayName}
 					</p>
-					<p className="text-gray-900 dark:text-white text-sm">
-						{time} __ {date}
+					<p className="text-gray-600 dark:text-gray-200 text-center font-mono text-sm">
+						{time}  {date}
 					</p>
 				</div>
 				<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

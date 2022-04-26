@@ -10,6 +10,7 @@ const CreatePost = () => {
 	const { jwtToken } = useJwt()
 	const navigate = useNavigate()
 	const location = useLocation()
+	const from = location?.state?.from || '/'
 	const today = new Date()
 	const time = today.getHours() + ":" + today.getMinutes()
 	const date =
@@ -44,7 +45,7 @@ const CreatePost = () => {
 			.then((response) => response.json())
 			.then((data) => {
 				toast.success("Posted successfully")
-				navigate("/")
+				navigate(from)
 			})
 			.catch(() => toast.error("something went wrong"))
 	}

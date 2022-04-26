@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import usePosts from "../hooks/usePosts"
 import Post from "../Shared/Post"
 import { css } from "@emotion/react"
@@ -13,7 +13,8 @@ const override = css`
 `
 const Home = () => {
 	const [loading] = useState(true)
-	const [color, setColor] = useState("#000")
+	const location = useLocation()
+	const [color] = useState("#000")
 	const {posts} = usePosts()
 	if(posts.length === 0) {
 		 return (
@@ -34,6 +35,7 @@ const Home = () => {
 			<div className=" w-[95%] md:w-2/4 grid mx-auto justify-items-center gap-6">
 				<div className=" w-full grid">
 					<Link
+					state={{from: location}}
 						className="bg-gray-200 dark:bg-gray-600 mt-8 py-4 rounded-md text-center"
 						to="/new-post"
 					>
