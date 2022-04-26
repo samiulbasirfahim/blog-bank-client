@@ -6,11 +6,11 @@ import Header from "./Shared/Header/Header"
 import RequireAuth from "./Shared/RequireAuth/RequireAuth"
 
 function App() {
-	const { isDarkMode, handleDarkMode } = useSetDarkMode()
+	const { darkMode, handleDarkMode } = useSetDarkMode()
 	return (
-		<div className={`${isDarkMode && "dark"}`}>
+		<div className={`${darkMode && "dark"}`}>
 			<Header
-				isDarkMode={isDarkMode}
+				isDarkMode={darkMode}
 				darkModeHandler={handleDarkMode}
 			></Header>
 			<Routes>

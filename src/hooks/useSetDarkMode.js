@@ -1,21 +1,30 @@
+import { async } from "@firebase/util"
 import { useEffect, useState } from "react"
 
 const useSetDarkMode = () => {
-	const [isDarkMode, setIsDarkMode] = useState(false)
+	const [isDarkModeOn, setIsDarkModeOn] = useState()
+	const [darkMode, setDarkMode] = useState(null)
 	useEffect(() => {
-		const isdarkModeOn = localStorage.getItem("isDarkMode")
-		if (isdarkModeOn) {
-			setIsDarkMode(true)
-		} else {
-			setIsDarkMode(false)
+		const loadData = async () => {
+			const darkModeOn = await localStorage.getItem("isDarkMode")
+			setIsDarkModeOn(darkModeOn)
 		}
+		loadData()
 	}, [])
+	useEffect(() => {
+		if (isDarkModeOn === "true") {
+			setDarkMode(true)
+		} else {
+			setDarkMode(false)
+
+		}
+	}, [isDarkModeOn])
 	const handleDarkMode = () => {
-		setIsDarkMode(!isDarkMode)
-		localStorage.setItem("isDarkMode", true)
+		setDarkMode(!darkMode)
+		localStorage.setItem("isDarkMode", !darkMode)
 	}
 
-    return {isDarkMode, handleDarkMode}
+	return { darkMode, handleDarkMode }
 }
 
 export default useSetDarkMode
