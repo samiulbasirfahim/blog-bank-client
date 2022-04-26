@@ -15,7 +15,7 @@ const CreatePost = () => {
 	const time = today.getHours() + ":" + today.getMinutes()
 	const date =
 		today.getDate() + "/" + today.getMonth() + "/" + today.getFullYear()
-	console.log(time, date)
+	// console.log(time, date)
 	const handleSubmit = (event) => {
 		event.preventDefault()
 		const postBody = event.target.post.value

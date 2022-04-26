@@ -5,12 +5,12 @@ import useJwt from "../hooks/useJwt"
 const EditPost = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
-	const from = location?.state?.from || '/'
+	const from = location?.state?.from || "/"
 	const { postId } = useParams()
 	const [post, setPost] = useState({})
 	const { jwtToken } = useJwt()
 	useEffect(() => {
-		fetch("http://localhost:5000/post/" + postId)
+		fetch("https://blog-post-server-143.herokuapp.com/post/" + postId)
 			.then((response) => response.json())
 			.then((data) => {
 				setPost(data)
@@ -23,25 +23,28 @@ const EditPost = () => {
 	}, [post])
 	const handleUpdate = (event) => {
 		event.preventDefault()
-		console.log(post)
 		const postBody = {
 			...post,
 			postTitle: event.target.title.value,
 			postBody: event.target.post.value,
 		}
-		fetch("http://localhost:5000/updatePost/" + postId, {
-			headers: {
-				"content-type": "application/json",
-				authorization: "bearer " + jwtToken,
-			},
-			body: JSON.stringify({ postBody }),
-			method: "put",
-		})
+		fetch(
+			"https://blog-post-server-143.herokuapp.com/updatePost/" + postId,
+			{
+				headers: {
+					"content-type": "application/json",
+					authorization: "bearer " + jwtToken,
+				},
+				body: JSON.stringify({ postBody }),
+				method: "put",
+			}
+		)
 			.then((response) => response.json())
-			.then((data) => {console.log(data)
-			if(data.modifiedCount === 1){
-				navigate(from)
-			}})
+			.then((data) => {
+				if (data.modifiedCount === 1) {
+					navigate(from)
+				}
+			})
 	}
 	return (
 		<div className="h-[90vh] flex justify-center items-center">

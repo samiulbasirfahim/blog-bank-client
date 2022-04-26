@@ -25,7 +25,7 @@ const Register = () => {
 		const repeat_password = event.target.repeat_password.value
 		const first_name = event.target.first_name.value
 		const last_name = event.target.last_name.value
-		console.log(email, password, first_name, last_name, repeat_password)
+		// console.log(email, password, first_name, last_name, repeat_password)
 		if (password !== repeat_password) {
 			toast.error("Password mismatch")
 		} else {
@@ -37,7 +37,7 @@ const Register = () => {
 					toast.success("Register successful")
 				})
 				.catch((error) => {
-					console.log(error.code)
+					// console.log(error.code)
 					if (error.code === "auth/email-already-in-use") {
 						toast.error("Email already in use")
 						event.target.reset()
