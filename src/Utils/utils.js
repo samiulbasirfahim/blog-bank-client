@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 const createToken = (email, from) => {
 	if (email) {
-		fetch("http://localhost:5000/getToken", {
+		fetch("https://blog-post-server-143.herokuapp.com/getToken", {
 			body: JSON.stringify({ email: email }),
 			headers: { "Content-Type": "application/json" },
 			method: "post",

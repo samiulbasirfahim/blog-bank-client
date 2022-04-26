@@ -6,6 +6,7 @@ import Home from "./Pages/Home"
 import Login from "./Pages/Login"
 import ManagePost from "./Pages/ManagePost/ManagePost"
 import Register from "./Pages/Register"
+import SendResetPassMail from "./Pages/SendResetPassMail"
 import Header from "./Shared/Header/Header"
 import RequireAuth from "./Shared/RequireAuth/RequireAuth"
 
@@ -19,6 +20,7 @@ function App() {
 			></Header>
 			<Routes>
 				<Route path={"/login"} element={<Login></Login>}></Route>
+				<Route path={"/reset-password"} element={<SendResetPassMail/>}></Route>
 				<Route
 					path={"/register"}
 					element={<Register></Register>}

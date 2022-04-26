@@ -9,7 +9,7 @@ const useMyposts = () => {
 	const { jwtToken } = useJwt()
 	useEffect(() => {
 		if (jwtToken && user?.email) {
-			fetch("http://localhost:5000/userPost", {
+			fetch("https://blog-post-server-143.herokuapp.com/userPost", {
 				method: "get",
 				headers: {
 					"Content-Type": "application/json",
