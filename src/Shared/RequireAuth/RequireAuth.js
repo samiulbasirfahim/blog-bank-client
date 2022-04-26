@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { Navigate, useLocation } from "react-router-dom"
-import { ClimbingBoxLoader, RingLoader } from "react-spinners"
+import { ClimbingBoxLoader } from "react-spinners"
 import auth from "../../firebase.init"
 import { css } from "@emotion/react"
 // import { css } from "@emotion/react";
@@ -15,8 +15,9 @@ const override = css`
 const RequireAuth = ({ children }) => {
 	const location = useLocation()
 	const [user, loadingUser] = useAuthState(auth)
-	let [loading, setLoading] = useState(true)
-	let [color, setColor] = useState("#ffffff")
+	const [loading] = useState(true)
+	const [color, setColor] = useState("#000")
+
 
 	if (loadingUser) {
 		return (

@@ -7,11 +7,15 @@ import useJwt from "../hooks/useJwt"
 
 const CreatePost = () => {
 	const [user] = useAuthState(auth)
-	const {jwtToken} = useJwt()
+	const { jwtToken } = useJwt()
 	const navigate = useNavigate()
-    const location = useLocation()
+	const location = useLocation()
+	const today = new Date()
+	const time = today.getHours() + ":" + today.getMinutes()
+	const date =
+		today.getDate() + "/" + today.getMonth() + "/" + today.getFullYear()
+	console.log(time, date)
 	const handleSubmit = (event) => {
-		
 		event.preventDefault()
 		const postBody = event.target.post.value
 		const postTitle = event.target.title.value
@@ -27,6 +31,9 @@ const CreatePost = () => {
 				postTitle: postTitle,
 				author: user.email,
 				authorDisplayName: user.displayName,
+				time: time,
+				date: date,
+				image:''
 			}),
 			headers: {
 				"Content-Type": "application/json",
@@ -35,11 +42,11 @@ const CreatePost = () => {
 			method: "post",
 		})
 			.then((response) => response.json())
-			.then((data) =>{
-
-				toast.success('Posted successfully')
-				navigate('/')
-			}).catch(() => toast.error('something went wrong'))
+			.then((data) => {
+				toast.success("Posted successfully")
+				navigate("/")
+			})
+			.catch(() => toast.error("something went wrong"))
 	}
 	return (
 		<div className="h-[90vh] flex justify-center items-center">

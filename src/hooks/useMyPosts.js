@@ -23,7 +23,7 @@ const useMyposts = () => {
 				})
 		}
 	}, [jwtToken, user])
-	return posts
+	return {posts, setPosts}
 }
 
 export default useMyposts

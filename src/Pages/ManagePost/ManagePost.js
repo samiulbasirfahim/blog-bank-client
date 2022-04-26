@@ -1,12 +1,33 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import useJwt from "../../hooks/useJwt"
 import useMyposts from "../../hooks/useMyPosts"
 import Post from "../../Shared/Post"
 
 const ManagePost = () => {
-	const posts = useMyposts()
-	const manageDeletedPosts = (id) => {}
-		
+	const { jwtToken } = useJwt()
+	const { posts, setPosts } = useMyposts()
+	const manageDeletePosts = (id) => {
+		const confirmDelete = window.confirm(
+			"are you sure to delete this post?"
+		)
+		if (confirmDelete) {
+			fetch("http://localhost:5000/deletePost/" + id, {
+				headers: {
+					"content-type": "application/json",
+					authorization: "Bearer " + jwtToken,
+				},
+
+				method: "delete",
+			}).then(response => response.json()).then(data => {
+				if (data.deleteCount !== 0) {
+					const remaining = posts.filter(post => post._id !== id)
+					setPosts(remaining)
+				}
+			})
+		}
+	}
+
 	return (
 		<div className="min-h-[90vh]">
 			<div className=" w-[95%] md:w-2/4 grid mx-auto justify-items-center gap-6">
@@ -28,7 +49,10 @@ const ManagePost = () => {
 						<button className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 							Edit
 						</button>
-						<button onClick={manageDeletedPosts} className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+						<button
+							onClick={() => manageDeletePosts(post._id)}
+							className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+						>
 							Delete
 						</button>
 					</Post>

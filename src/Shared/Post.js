@@ -1,7 +1,7 @@
 import React from "react"
 
 const Post = ({
-	post: { author, authorDisplayName, postBody, postTitle, _id },
+	post: { author, authorDisplayName, postBody, postTitle, _id, time,date },
 	children,
 }) => {
 	return (
@@ -13,12 +13,12 @@ const Post = ({
 			/>
 
 			<div className="p-5">
-				<div>
+				<div className="flex justify-between">
 					<p className="text-gray-900 dark:text-white text-sm">
 						{authorDisplayName}
 					</p>
 					<p className="text-gray-900 dark:text-white text-sm">
-						{authorDisplayName}
+						{time} __ {date}
 					</p>
 				</div>
 				<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

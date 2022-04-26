@@ -6,12 +6,6 @@ import { Link } from "react-router-dom"
 import { signOut } from "firebase/auth"
 const Header = ({ darkModeHandler, isDarkMode }) => {
 	const [user] = useAuthState(auth)
-	console.log(user)
-	const today = new Date()
-	const time = today.getHours() + ":" + today.getMinutes()
-	const date =
-		today.getDate() + "/" + today.getMonth() + "/" + today.getFullYear()
-	console.log(time, date)
 	return (
 		<div className="h-[8vh] sticky top-0 bg-gray-300 dark:bg-gray-600 shadow-blue-50 dark:shadow-gray-800 shadow-2xl">
 			<header className="h-full px-2 flex items-center justify-between container mx-auto">
