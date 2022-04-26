@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import useSetDarkMode from "./hooks/useSetDarkMode"
 import Home from "./Pages/Home"
 import Login from "./Pages/Login"
+import Register from "./Pages/Register"
 import Header from "./Shared/Header/Header"
 import RequireAuth from "./Shared/RequireAuth/RequireAuth"
 
@@ -15,6 +16,10 @@ function App() {
 			></Header>
 			<Routes>
 				<Route path={"/login"} element={<Login></Login>}></Route>
+				<Route
+					path={"/register"}
+					element={<Register></Register>}
+				></Route>
 				<Route
 					path={"/"}
 					element={
