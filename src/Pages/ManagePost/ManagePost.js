@@ -42,7 +42,7 @@ const ManagePost = () => {
 				<div className=" w-full grid">
 					<Link
 						state={{ from: location }}
-						className="bg-gray-200 dark:bg-gray-600 mt-8 py-4 rounded-md text-center"
+						className="bg-white dark:bg-gray-600 mt-8 py-4 rounded-md text-center"
 						to="/new-post"
 					>
 						Create a new post

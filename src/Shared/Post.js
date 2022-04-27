@@ -1,9 +1,11 @@
 import React from "react"
+import { useNavigate } from "react-router-dom"
 
 const Post = ({
-	post: { author, authorDisplayName, postBody, postTitle, _id, time,date },
+	post: { author, authorDisplayName, postBody, postTitle, _id, time, date },
 	children,
 }) => {
+	const navigate = useNavigate()
 	return (
 		<div className="w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
 			{/* <img
@@ -18,7 +20,7 @@ const Post = ({
 						{authorDisplayName}
 					</p>
 					<p className="text-gray-600 dark:text-gray-200 text-center font-mono text-sm">
-						{time}  {date}
+						{time} {date}
 					</p>
 				</div>
 				<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -31,7 +33,10 @@ const Post = ({
 						? postBody.slice(0, 200) + "..."
 						: postBody}
 				</p>
-				<button className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+				<button
+					onClick={() => navigate("/post/" + _id)}
+					className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+				>
 					Read more
 					<svg
 						className="ml-2 -mr-1 w-4 h-4"
@@ -46,9 +51,7 @@ const Post = ({
 						></path>
 					</svg>
 				</button>
-			<div className='mt-7 flex justify-between'>
-				{children}
-			</div>
+				<div className="mt-7 flex justify-between">{children}</div>
 			</div>
 		</div>
 	)
