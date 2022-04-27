@@ -10,6 +10,7 @@ import ManagePost from "./Pages/ManagePost/ManagePost"
 import Profile from "./Pages/Profile"
 import Register from "./Pages/Register"
 import SendResetPassMail from "./Pages/SendResetPassMail"
+import Footer from "./Shared/Footer"
 import Header from "./Shared/Header/Header"
 import RequireAuth from "./Shared/RequireAuth/RequireAuth"
 import RequireMailVerify from "./Shared/RequireAuth/RequireMailVerify"
@@ -80,6 +81,7 @@ function App() {
 					<Route path={"/"} element={<Home></Home>}></Route>
 				</Routes>
 				<Toaster></Toaster>
+				<Footer></Footer>
 			</div>
 		</div>
 	)
