@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth"
 import toast from "react-hot-toast"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import auth from "../firebase.init"
+import HelmetTitle from "../Shared/HelmetTitle"
 import SocialLogin from "../Shared/SocialLogin/SocialLogin"
 import createToken from "../Utils/utils"
 
@@ -51,6 +52,7 @@ const Register = () => {
 	}
 	return (
 		<div className="min-h-[90vh] flex flex-col justify-center">
+			<HelmetTitle>Register</HelmetTitle>
 			<p className="mx-auto mb-8 text-4xl md:text-6xl text-black dark:text-white font-mono font-semibold">
 				{" "}
 				Register{" "}

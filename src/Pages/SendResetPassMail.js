@@ -3,6 +3,7 @@ import React from "react"
 import toast from "react-hot-toast"
 import { Link } from "react-router-dom"
 import auth from "../firebase.init"
+import HelmetTitle from "../Shared/HelmetTitle"
 
 const SendResetPassMail = () => {
 	const hadnleResetEmail = (event) => {
@@ -26,6 +27,7 @@ const SendResetPassMail = () => {
 	}
 	return (
 		<div className="min-h-[90vh] flex flex-col justify-center">
+			<HelmetTitle>Reset Email</HelmetTitle>
 			<p className="mx-auto mb-8 text-4xl md:text-6xl text-black dark:text-white font-mono font-semibold">
 				{" "}
 				Reset Password{" "}

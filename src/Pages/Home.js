@@ -4,6 +4,7 @@ import usePosts from "../hooks/usePosts"
 import Post from "../Shared/Post"
 import { css } from "@emotion/react"
 import { PacmanLoader } from "react-spinners"
+import HelmetTitle from "../Shared/HelmetTitle"
 // import { css } from "@emotion/react";
 
 const override = css`
@@ -32,6 +33,7 @@ const Home = () => {
 	}
 	return (
 		<div className="min-h-screen">
+			<HelmetTitle>Home</HelmetTitle>
 			<div className=" w-[95%] md:w-2/4 grid mx-auto justify-items-center gap-6">
 				<div className=" w-full grid">
 					<Link

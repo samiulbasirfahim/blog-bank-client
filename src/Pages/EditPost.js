@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 import useJwt from "../hooks/useJwt"
+import HelmetTitle from "../Shared/HelmetTitle"
 
 const EditPost = () => {
 	const navigate = useNavigate()
@@ -48,6 +49,7 @@ const EditPost = () => {
 	}
 	return (
 		<div className="h-[90vh] flex justify-center items-center">
+			<HelmetTitle>Edit post</HelmetTitle>
 			<form className="w-[95%] md:w-2/4 mx-auto" onSubmit={handleUpdate}>
 				<p className="mx-auto mb-8 text-4xl md:text-6xl text-black dark:text-white font-mono font-semibold">
 					Edit {post?.postTitle?.slice(0, 10)}...

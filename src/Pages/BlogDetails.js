@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import HelmetTitle from "../Shared/HelmetTitle"
 
 const BlogDetails = () => {
 	const { postId } = useParams()
@@ -15,6 +16,7 @@ const BlogDetails = () => {
 	}, [postId])
 	return (
 		<div className="min-h-[90vh]">
+			<HelmetTitle>{post?.postTitle}</HelmetTitle>
 			<div class="flex max-w-xl my-10 bg-white shadow-md rounded-lg overflow-hidden mx-auto">
 				<div class="flex items-center w-full">
 					<div class="w-full">
@@ -58,7 +60,7 @@ const BlogDetails = () => {
 							<img
 								class="w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer"
 								alt="User avatar"
-								src="https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=200"
+								src="https://i.ibb.co/LtSrBZh/Parker96.webp"
 							/>
 							<span class="absolute inset-y-0 right-0 flex items-center pr-6">
 								<button

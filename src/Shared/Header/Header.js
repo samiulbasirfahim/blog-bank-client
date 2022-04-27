@@ -64,9 +64,9 @@ const Header = ({ darkModeHandler, isDarkMode }) => {
 					{!user ? (
 						<Link
 							to="/login"
-							className="text-dark font-bold dark:text-white"
+							className="text-dark font-bold flex items-center dark:text-white"
 						>
-							<span className="md:block hidden">Login</span>
+							<span className="md:block hidden px-2">Login</span>
 							<MdLogin></MdLogin>
 						</Link>
 					) : (

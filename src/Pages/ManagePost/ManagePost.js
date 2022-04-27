@@ -2,6 +2,7 @@ import React from "react"
 import { Link, useLocation } from "react-router-dom"
 import useJwt from "../../hooks/useJwt"
 import useMyposts from "../../hooks/useMyPosts"
+import HelmetTitle from "../../Shared/HelmetTitle"
 import Post from "../../Shared/Post"
 
 const ManagePost = () => {
@@ -39,6 +40,7 @@ const ManagePost = () => {
 	return (
 		<div className="min-h-[90vh]">
 			<div className=" w-[95%] md:w-2/4 grid mx-auto justify-items-center gap-6">
+				<HelmetTitle>Manage post</HelmetTitle>
 				<div className=" w-full grid">
 					<Link
 						state={{ from: location }}

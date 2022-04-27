@@ -2,20 +2,22 @@ import React from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { Link, useLocation } from "react-router-dom"
 import auth from "../firebase.init"
+import HelmetTitle from "../Shared/HelmetTitle"
 
 const Profile = () => {
 	const [user] = useAuthState(auth)
 	const location = useLocation()
 	const image = "https://i.ibb.co/vPQMNFp/istockphoto-1327592449-612x612.jpg"
-	const work = ""
-	const fbLink =''
-	const gitHublink =''
-	const twitterLink =''
-	const instagramLink =''
-	const youtubeLink =''
-	const unspashLink =''
+	// const work = ""
+	// const fbLink =''
+	// const gitHublink =''
+	// const twitterLink =''
+	// const instagramLink =''
+	// const youtubeLink =''
+	// const unspashLink =''
 	return (
 		<div className="min-h-[90vh] w-screen overflow-x-hidden">
+			<HelmetTitle>{user?.displayName}</HelmetTitle>
 			<div className=" w-[95%] md:w-2/4 grid mx-auto justify-items-center gap-6">
 				<div className=" w-full grid">
 					<Link
@@ -79,7 +81,7 @@ const Profile = () => {
 							<div class="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between">
 								<a
 									class="link"
-									href=""
+									href="#"
 									data-tippy-content="@facebook_handle"
 								>
 									<svg
