@@ -1,5 +1,7 @@
+import { signOut } from "firebase/auth"
 import React, { useEffect, useState } from "react"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
+import auth from "../firebase.init"
 import useJwt from "../hooks/useJwt"
 import HelmetTitle from "../Shared/HelmetTitle"
 
@@ -11,7 +13,7 @@ const EditPost = () => {
 	const [post, setPost] = useState({})
 	const { jwtToken } = useJwt()
 	useEffect(() => {
-		fetch("https://blog-post-server-143.herokuapp.com/post/" + postId)
+		fetch("https://blog-post-fahim.herokuapp.com/post/" + postId)
 			.then((response) => response.json())
 			.then((data) => {
 				setPost(data)
@@ -30,7 +32,7 @@ const EditPost = () => {
 			postBody: event.target.post.value,
 		}
 		fetch(
-			"https://blog-post-server-143.herokuapp.com/updatePost/" + postId,
+			"https://blog-post-fahim.herokuapp.com/updatePost/" + postId,
 			{
 				headers: {
 					"content-type": "application/json",
@@ -40,7 +42,12 @@ const EditPost = () => {
 				method: "put",
 			}
 		)
-			.then((response) => response.json())
+		.then((response) =>{
+			if(response.status === 401 || response.status === 403){
+				signOut(auth)
+				navigate('/login')
+			}
+			return response.json()})
 			.then((data) => {
 				if (data.modifiedCount === 1) {
 					navigate(from)

@@ -15,7 +15,7 @@ const ManagePost = () => {
 		)
 		if (confirmDelete) {
 			fetch(
-				"https://blog-post-server-143.herokuapp.com/deletePost/" + id,
+				"https://blog-post-fahim.herokuapp.com/deletePost/" + id,
 				{
 					headers: {
 						"content-type": "application/json",

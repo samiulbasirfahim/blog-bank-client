@@ -1,3 +1,4 @@
+import { signOut } from "firebase/auth"
 import React from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
 import toast from "react-hot-toast"
@@ -27,7 +28,7 @@ const CreatePost = () => {
 			)
 		}
 
-		fetch("https://blog-post-server-143.herokuapp.com/post", {
+		fetch("https://blog-post-fahim.herokuapp.com/post", {
 			body: JSON.stringify({
 				postBody: postBody,
 				postTitle: postTitle,
@@ -43,7 +44,12 @@ const CreatePost = () => {
 			},
 			method: "post",
 		})
-			.then((response) => response.json())
+		.then((response) =>{
+			if(response.status === 401 || response.status === 403){
+				signOut(auth)
+				navigate('/login')
+			}
+			return response.json()})
 			.then((data) => {
 				toast.success("Posted successfully")
 				navigate(from)

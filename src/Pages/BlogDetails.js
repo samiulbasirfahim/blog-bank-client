@@ -8,7 +8,7 @@ const BlogDetails = () => {
 	console.log(post)
 
 	useEffect(() => {
-		fetch("https://blog-post-server-143.herokuapp.com/post/" + postId)
+		fetch("https://blog-post-fahim.herokuapp.com/post/" + postId)
 			.then((response) => response.json())
 			.then((data) => {
 				setPost(data)

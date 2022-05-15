@@ -15,6 +15,7 @@ const RequireMailVerify = ({ children }) => {
 				toast.error("something went wrong, 	please try again")
 			})
 	}
+	console.log(user)
 	if (!user?.emailVerified) {
 		return (
 			<div className="min-h-screen flex justify-center items-center ">
@@ -40,10 +41,10 @@ const RequireMailVerify = ({ children }) => {
 							every effort to ensure that these emails are
 							delivered.
 							<br />
-							{user?.email.slice(0, 6)}.......
-							{user?.email.slice(
-								user?.email.length - 12,
-								user.email.length
+							{user?.email?.slice(0, 6)}.......
+							{user?.email?.slice(
+								user?.email?.length - 12,
+								user.email?.length
 							)}
 						</p>
 					</button>
