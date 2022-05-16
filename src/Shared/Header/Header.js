@@ -1,5 +1,11 @@
 import React from "react"
-import { MdModeNight, MdOutlineWbSunny, MdAccountBox, MdLogin, MdLogout } from "react-icons/md"
+import {
+	MdModeNight,
+	MdOutlineWbSunny,
+	MdAccountBox,
+	MdLogin,
+	MdLogout,
+} from "react-icons/md"
 import { useAuthState } from "react-firebase-hooks/auth"
 import auth from "../../firebase.init"
 import { Link, useLocation, useNavigate } from "react-router-dom"
@@ -8,7 +14,6 @@ const Header = ({ darkModeHandler, isDarkMode }) => {
 	const [user] = useAuthState(auth)
 	const location = useLocation()
 	const navigate = useNavigate()
-	console.log(location.pathname.split("/")[1])
 	return (
 		<div className="h-[8vh] sticky z-50 top-0 bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl shadow-blue-200 dark:shadow-gray-700 shadow-2xl">
 			<header className="h-full px-2 flex items-center justify-between container mx-auto">
@@ -54,12 +59,17 @@ const Header = ({ darkModeHandler, isDarkMode }) => {
 						)}
 					</button>
 					<span className="mr-6">
-						{user && <Link to="/profile" className="flex items-center font-bold text-dark dark:text-white">
+						{user && (
+							<Link
+								to="/profile"
+								className="flex items-center font-bold text-dark dark:text-white"
+							>
 								<span className="hidden md:block px-2">
 									Profile
 								</span>
 								<MdAccountBox></MdAccountBox>
-							</Link>}
+							</Link>
+						)}
 					</span>
 					{!user ? (
 						<Link
@@ -71,10 +81,16 @@ const Header = ({ darkModeHandler, isDarkMode }) => {
 						</Link>
 					) : (
 						<button
-							onClick={() => signOut(auth)}
+							onClick={() => {
+								localStorage.removeItem("accessToken")
+
+								signOut(auth)
+							}}
 							className="text-dark font-bold flex items-center dark:text-white"
 						>
-							<span className="md:block hidden px-2">log out</span>
+							<span className="md:block hidden px-2">
+								log out
+							</span>
 							<MdLogout></MdLogout>
 						</button>
 					)}

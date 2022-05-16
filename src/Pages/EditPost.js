@@ -1,4 +1,5 @@
 import { signOut } from "firebase/auth"
+import moment from "moment"
 import React, { useEffect, useState } from "react"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 import auth from "../firebase.init"
@@ -30,6 +31,7 @@ const EditPost = () => {
 			...post,
 			postTitle: event.target.title.value,
 			postBody: event.target.post.value,
+			editDate: moment().format('MMMM Do YYYY, h:mm:ss a')
 		}
 		fetch(
 			"https://blog-post-fahim.herokuapp.com/updatePost/" + postId,
@@ -44,6 +46,8 @@ const EditPost = () => {
 		)
 		.then((response) =>{
 			if(response.status === 401 || response.status === 403){
+				localStorage.removeItem("accessToken")
+
 				signOut(auth)
 				navigate('/login')
 			}

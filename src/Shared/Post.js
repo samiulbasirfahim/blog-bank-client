@@ -1,13 +1,19 @@
+import moment from "moment"
 import React from "react"
 import { useNavigate } from "react-router-dom"
 
 const Post = ({
-	post: { author, authorDisplayName, postBody, postTitle, _id, time, date },
+	post: { author, authorDisplayName, postBody, postTitle, _id, date },
 	children,
+	index,
 }) => {
 	const navigate = useNavigate()
 	return (
-		<div className="w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+		<div
+			data-aos="fade-up"
+			data-aos-delay={300 * index}
+			className="w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+		>
 			{/* <img
 				className="rounded-t-lg"
 				src="https://i.ibb.co/THdW8zd/pexels-lucilene-silva-4069535.jpg"
@@ -20,7 +26,7 @@ const Post = ({
 						{authorDisplayName}
 					</p>
 					<p className="text-gray-600 dark:text-gray-200 text-center font-mono text-sm">
-						{time} {date}
+						{date}
 					</p>
 				</div>
 				<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

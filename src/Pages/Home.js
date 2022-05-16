@@ -5,6 +5,8 @@ import Post from "../Shared/Post"
 import { css } from "@emotion/react"
 import { PacmanLoader } from "react-spinners"
 import HelmetTitle from "../Shared/HelmetTitle"
+import { useAuthState } from "react-firebase-hooks/auth"
+import auth from "../firebase.init"
 // import { css } from "@emotion/react";
 
 const override = css`
@@ -14,9 +16,10 @@ const override = css`
 `
 const Home = () => {
 	const [loading] = useState(true)
+	const [user] = useAuthState(auth)
 	const location = useLocation()
 	const [color] = useState("#000")
-	const {posts} = usePosts()
+	const {posts} = usePosts(user)
 	if(posts.length === 0) {
 		 return (
 			<div className="sweet-loading w-screen min-h-[90vh] flex justify-center items-center">
@@ -45,7 +48,7 @@ const Home = () => {
 					</Link>
 				</div>
 				{
-                    posts.map(post => <Post key={post._id} post={post}></Post>)
+                    posts.map((post ,index)=> <Post key={post._id} index={index} post={post}></Post>)
                 }
 			</div>
 		</div>

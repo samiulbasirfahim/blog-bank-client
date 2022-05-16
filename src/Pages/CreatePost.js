@@ -1,4 +1,5 @@
 import { signOut } from "firebase/auth"
+import moment from "moment"
 import React from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
 import toast from "react-hot-toast"
@@ -12,12 +13,7 @@ const CreatePost = () => {
 	const { jwtToken } = useJwt()
 	const navigate = useNavigate()
 	const location = useLocation()
-	const from = location?.state?.from || '/'
-	const today = new Date()
-	const time = today.getHours() + ":" + today.getMinutes()
-	const date =
-		today.getDate() + "/" + today.getMonth() + "/" + today.getFullYear()
-	// console.log(time, date)
+	const from = location?.state?.from || "/"
 	const handleSubmit = (event) => {
 		event.preventDefault()
 		const postBody = event.target.post.value
@@ -34,9 +30,8 @@ const CreatePost = () => {
 				postTitle: postTitle,
 				author: user.email,
 				authorDisplayName: user.displayName,
-				time: time,
-				date: date,
-				image:''
+				date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+				image: "",
 			}),
 			headers: {
 				"Content-Type": "application/json",
@@ -44,15 +39,20 @@ const CreatePost = () => {
 			},
 			method: "post",
 		})
-		.then((response) =>{
-			if(response.status === 401 || response.status === 403){
-				signOut(auth)
-				navigate('/login')
-			}
-			return response.json()})
+			.then((response) => {
+				if (response.status === 401 || response.status === 403) {
+					localStorage.removeItem("accessToken")
+					signOut(auth)
+					navigate("/login")
+				} else {
+					navigate(from)
+				}
+				return response.json()
+			})
 			.then((data) => {
-				toast.success("Posted successfully")
-				navigate(from)
+				if (data.insertedId > 0) {
+					toast.success("Posted successfully")
+				}
 			})
 			.catch(() => toast.error("something went wrong"))
 	}

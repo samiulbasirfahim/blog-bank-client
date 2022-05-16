@@ -15,7 +15,6 @@ const RequireMailVerify = ({ children }) => {
 				toast.error("something went wrong, 	please try again")
 			})
 	}
-	console.log(user)
 	if (!user?.emailVerified) {
 		return (
 			<div className="min-h-screen flex justify-center items-center ">

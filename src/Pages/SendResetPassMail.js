@@ -17,7 +17,6 @@ const SendResetPassMail = () => {
 				)
 			})
 			.catch((error) => {
-				// console.log(error.code)
 				if (error.code === "auth/invalid-email") {
 					toast.error("Invalid email address")
 				} else if (error.code === "auth/user-not-found") {
