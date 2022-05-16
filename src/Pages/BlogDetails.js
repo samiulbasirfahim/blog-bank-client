@@ -115,45 +115,51 @@ const BlogDetails = () => {
 						<div className="text-gray-600 dark:text-gray-400 text-sm mb-6 mx-3 px-2">
 							{post.postBody}
 						</div>
-						<form
-							onSubmit={handleComment}
-							className="relative flex items-center self-center w-full max-w-xl p-4 overflow-hidden text-gray-600 focus-within:text-gray-400"
-						>
-							<img
-								className="w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer"
-								alt="User avatar"
-								src="https://i.ibb.co/LtSrBZh/Parker96.webp"
-							/>
-							<span className="absolute inset-y-0 right-0 flex items-center pr-6">
-								<button
-									type="submit"
-									className="p-1 focus:outline-none focus:shadow-none hover:text-blue-500"
-								>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										className="h-6 w-6"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-										stroke-width="2"
+						{user ? (
+							<form
+								onSubmit={handleComment}
+								className="relative flex items-center self-center w-full max-w-xl p-4 overflow-hidden text-gray-600 focus-within:text-gray-400"
+							>
+								<img
+									className="w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer"
+									alt="User avatar"
+									src="https://i.ibb.co/LtSrBZh/Parker96.webp"
+								/>
+								<span className="absolute inset-y-0 right-0 flex items-center pr-6">
+									<button
+										type="submit"
+										className="p-1 focus:outline-none focus:shadow-none hover:text-blue-500"
 									>
-										<path
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											d="M17 8l4 4m0 0l-4 4m4-4H3"
-										/>
-									</svg>
-								</button>
-							</span>
-							<input
-								type="search"
-								name="comment"
-								className="w-full py-2 pl-4 pr-10 text-sm bg-gray-100 border border-transparent appearance-none rounded-tg placeholder-gray-400 focus:bg-white focus:outline-none focus:border-blue-500 focus:text-gray-900 focus:shadow-outline-blue"
-								style={{ borderRadius: "25px" }}
-								placeholder="Post a comment..."
-								autocomplete="off"
-							/>
-						</form>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											className="h-6 w-6"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+											stroke-width="2"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												d="M17 8l4 4m0 0l-4 4m4-4H3"
+											/>
+										</svg>
+									</button>
+								</span>
+								<input
+									type="search"
+									name="comment"
+									className="w-full py-2 pl-4 pr-10 text-sm bg-gray-100 border border-transparent appearance-none rounded-tg placeholder-gray-400 focus:bg-white focus:outline-none focus:border-blue-500 focus:text-gray-900 focus:shadow-outline-blue"
+									style={{ borderRadius: "25px" }}
+									placeholder="Post a comment..."
+									autocomplete="off"
+								/>
+							</form>
+						) : (
+							<div>
+								<p className="text-gray-500 text-center">You must logged in for make a comment</p>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>

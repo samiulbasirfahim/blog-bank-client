@@ -1,0 +1,36 @@
+[debug] [2022-05-16T03:52:21.909Z] ----------------------------------------------------------------------
+[debug] [2022-05-16T03:52:21.910Z] Command:       /usr/bin/node /usr/local/bin/firebase deploy
+[debug] [2022-05-16T03:52:21.910Z] CLI Version:   10.9.2
+[debug] [2022-05-16T03:52:21.911Z] Platform:      linux
+[debug] [2022-05-16T03:52:21.911Z] Node Version:  v18.1.0
+[debug] [2022-05-16T03:52:21.911Z] Time:          Mon May 16 2022 09:52:21 GMT+0600 (Bangladesh Standard Time)
+[debug] [2022-05-16T03:52:21.911Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-05-16T03:52:21.962Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-05-16T03:52:21.963Z] > authorizing via signed-in user (samiulbasirfahim360@gmail.com)
+[debug] [2022-05-16T03:52:21.963Z] [iam] checking project blog-post-media for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-05-16T03:52:21.965Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/blog-post-media:testIamPermissions [none]
+[debug] [2022-05-16T03:52:21.965Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/blog-post-media:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-05-16T03:52:23.194Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/blog-post-media:testIamPermissions 200
+[debug] [2022-05-16T03:52:23.195Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/blog-post-media:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-05-16T03:52:23.198Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/blog-post-media [none]
+[debug] [2022-05-16T03:52:23.840Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/blog-post-media 200
+[debug] [2022-05-16T03:52:23.840Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/blog-post-media {"projectId":"blog-post-media","projectNumber":"295196718741","displayName":"blog-post-media","name":"projects/blog-post-media","resources":{"hostingSite":"blog-post-media"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'blog-post-media'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2022-05-16T03:52:23.846Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/blog-post-media [none]
+[debug] [2022-05-16T03:52:24.318Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/blog-post-media 200
+[debug] [2022-05-16T03:52:24.319Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/blog-post-media {"projectId":"blog-post-media","projectNumber":"295196718741","displayName":"blog-post-media","name":"projects/blog-post-media","resources":{"hostingSite":"blog-post-media"},"state":"ACTIVE"}
+[debug] [2022-05-16T03:52:24.323Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/295196718741/sites/blog-post-media/versions [none]
+[debug] [2022-05-16T03:52:24.324Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/295196718741/sites/blog-post-media/versions {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2022-05-16T03:52:25.986Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/295196718741/sites/blog-post-media/versions 200
+[debug] [2022-05-16T03:52:25.987Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/295196718741/sites/blog-post-media/versions {"name":"projects/295196718741/sites/blog-post-media/versions/f77b81b6006c01c3","status":"CREATED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[blog-post-media]: beginning deploy... 
+[info] i  hosting[blog-post-media]: found 14 files in build 
+[debug] [2022-05-16T03:52:26.000Z] [hosting] uploading with 200 concurrency
+[debug] [2022-05-16T03:52:26.373Z] [hosting] hash cache [YnVpbGQ] stored for 14 files
+[debug] [2022-05-16T03:52:26.373Z] [hosting][hash queue][FINAL] {"max":364,"min":12,"avg":40.42857142857143,"active":0,"complete":14,"success":14,"errored":0,"retried":0,"total":14,"elapsed":372}
+[debug] [2022-05-16T03:52:26.374Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/295196718741/sites/blog-post-media/versions/f77b81b6006c01c3:populateFiles [none]
+[debug] [2022-05-16T03:52:26.374Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/295196718741/sites/blog-post-media/versions/f77b81b6006c01c3:populateFiles {"files":{"/asset-manifest.json":"1642b85a438ac9ab0f92d23080539d6aea2287dfffd03a0adc9153e33b8b70c8","/index.html":"5bdc8c30fd124069d721a43788fec203d3b0f7c21134be995f21e57dc0b56810","/favicon.ico":"c599b7a91ab3627e3538125d9f40adc2d4bf949046984262670545dc7738af06","/manifest.json":"0958a5e0c831126100c8c2d06a6bbaa665a3900f21aaff4130238a6f5a113aa1","/logo192.png":"76c449ccb9cd117c2f2338f091b18f7050f3210e249b2228f5c81b23f34377cd","/logo512.png":"7779210d56c1f3741e2e487799fe3092def4fa6ac450a60532b807c3a8971205","/robots.txt":"2544ca049f223a42bff01f72ad930a5edba75bbb7199d0f8430a02ff5aca16ec","/static/js/787.6f98ce3f.chunk.js":"9c7216847412e0c03219149035842ff10933cc2c7e38b2bbd3158223d5ba1783","/static/js/787.6f98ce3f.chunk.js.map":"181429efa0ea8266f27dfc5d12b7af06c1f86a948510eefb10af4c10934be660","/static/css/main.b3ed56de.css":"19fa94a21a31bd392070bac2b4165c58ebe134706bc49673675842872e2cb603","/static/css/main.b3ed56de.css.map":"555a9d540c9c2f31be4671f19588a9cbe50fbc7cd39d0495748c570fae992e15","/static/js/main.be677e0c.js.LICENSE.txt":"f8612df94a2b60ba8132f63e49a246f18417d1bba2ab99df98d9b79c3fa3c613","/static/js/main.be677e0c.js":"57d6ca3d43b0f10328f69f54403948bd7d2c6feff9a221d54461737b85cef283","/static/js/main.be677e0c.js.map":"19003d32b55c06e5f131235b7ad1e8d4c2128333a5bcc4589ca498c548ec131c"}}
