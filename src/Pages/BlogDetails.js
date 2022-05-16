@@ -91,7 +91,7 @@ const BlogDetails = () => {
 								</div>
 							</div>
 							<div className="flex flex-col justify-center w-full items-center">
-								<div className="text-gray-900 font-mono font-thin text-xs">
+								<div className="text-gray-900 dark:text-slate-400 font-mono font-thin text-xs">
 									{post.date}
 								</div>
 								{post.editDate && (
@@ -103,11 +103,11 @@ const BlogDetails = () => {
 						</div>
 						<div className="border-b border-gray-100"></div>
 						<div className="text-gray-400 font-medium text-sm mb-7 mt-6 mx-3 px-2">
-							<img
+							{post.image && <img
 								className="rounded"
-								src="https://i.ibb.co/THdW8zd/pexels-lucilene-silva-4069535.jpg"
+								src={post.image}
 								alt=""
-							/>
+							/>}
 						</div>
 						<div className="text-gray-600 font-semibold text-lg mb-2 mx-3 px-2">
 							{post.postTitle}
@@ -153,11 +153,14 @@ const BlogDetails = () => {
 									style={{ borderRadius: "25px" }}
 									placeholder="Post a comment..."
 									autocomplete="off"
+									required
 								/>
 							</form>
 						) : (
 							<div>
-								<p className="text-gray-500 text-center">You must logged in for make a comment</p>
+								<p className="text-gray-500 text-center">
+									You must logged in for make a comment
+								</p>
 							</div>
 						)}
 					</div>

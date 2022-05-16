@@ -18,43 +18,62 @@ const CreatePost = () => {
 		event.preventDefault()
 		const postBody = event.target.post.value
 		const postTitle = event.target.title.value
-		if (!user.email || !jwtToken) {
-			return (
-				<Navigate state={{ from: location }} to={"/login"}></Navigate>
-			)
-		}
 
-		fetch("https://blog-post-fahim.herokuapp.com/post", {
-			body: JSON.stringify({
-				postBody: postBody,
-				postTitle: postTitle,
-				author: user.email,
-				authorDisplayName: user.displayName,
-				date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-				image: "",
-			}),
-			headers: {
-				"Content-Type": "application/json",
-				authorization: "bearer " + jwtToken,
-			},
-			method: "post",
-		})
-			.then((response) => {
-				if (response.status === 401 || response.status === 403) {
-					localStorage.removeItem("accessToken")
-					signOut(auth)
-					navigate("/login")
-				} else {
-					navigate(from)
-				}
-				return response.json()
-			})
+		const image = event.target.image.files[0]
+		const formData = new FormData()
+		formData.append("image", image)
+		fetch(
+			"https://api.imgbb.com/1/upload?key=" +
+				process.env.REACT_APP_imagebb,
+			{
+				method: "POST",
+
+				body: formData,
+			}
+		)
+			.then((response) => response.json())
 			.then((data) => {
-				if (data.insertedId > 0) {
-					toast.success("Posted successfully")
+				console.log(data);
+				if (data.success) {
+					const imageLink = data.data.medium.url
+					fetch("https://blog-post-fahim.herokuapp.com/post", {
+						body: JSON.stringify({
+							postBody: postBody,
+							postTitle: postTitle,
+							author: user.email,
+							authorDisplayName: user.displayName,
+							date: moment().format("MMMM Do YYYY, h:mm:ss a"),
+							image: imageLink,
+						}),
+						headers: {
+							"Content-Type": "application/json",
+							authorization: "bearer " + jwtToken,
+						},
+						method: "post",
+					})
+						.then((response) => {
+							if (
+								response.status === 401 ||
+								response.status === 403
+							) {
+								localStorage.removeItem("accessToken")
+								signOut(auth)
+								navigate("/login")
+							} else {
+								navigate(from)
+							}
+							return response.json()
+						})
+						.then((data) => {
+							if (data.insertedId > 0) {
+								toast.success("Posted successfully")
+							}
+						})
+						.catch(() => toast.error("something went wrong"))
 				}
 			})
-			.catch(() => toast.error("something went wrong"))
+
+		console.log(image)
 	}
 	return (
 		<div className="h-[90vh] flex justify-center items-center">
@@ -94,6 +113,23 @@ const CreatePost = () => {
 						className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 						placeholder="post"
 					></textarea>
+				</div>
+				<div className="mb-6">
+					<label
+						for="image-input"
+						className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+					>
+						Image
+					</label>
+					<input
+						accept="image/*"
+						placeholder="Image"
+						type="file"
+						id="image-input"
+						name="image"
+						required
+						className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+					/>
 				</div>
 				<button
 					type="submit"

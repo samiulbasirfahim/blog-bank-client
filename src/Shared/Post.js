@@ -3,7 +3,7 @@ import React from "react"
 import { useNavigate } from "react-router-dom"
 
 const Post = ({
-	post: { author, authorDisplayName, postBody, postTitle, _id, date },
+	post: { author, authorDisplayName, postBody, postTitle, _id, date, image },
 	children,
 	index,
 }) => {
@@ -14,11 +14,7 @@ const Post = ({
 			data-aos-delay={300 * index}
 			className="w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
 		>
-			{/* <img
-				className="rounded-t-lg"
-				src="https://i.ibb.co/THdW8zd/pexels-lucilene-silva-4069535.jpg"
-				alt=""
-			/> */}
+			{image && <img className="rounded-t-lg" src={image} alt="" />}
 
 			<div className="p-5">
 				<div className="mt-2 mb-6">
