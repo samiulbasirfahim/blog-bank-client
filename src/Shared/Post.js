@@ -11,7 +11,7 @@ const Post = ({
 	return (
 		<div
 			data-aos="fade-up"
-			data-aos-delay={300 * index}
+			data-aos-delay={100}
 			className="w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
 		>
 			{image && <img className="rounded-t-lg" src={image} alt="" />}

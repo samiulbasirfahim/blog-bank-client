@@ -35,7 +35,7 @@ const CreatePost = () => {
 			.then((data) => {
 				console.log(data);
 				if (data.success) {
-					const imageLink = data.data.medium.url
+					const imageLink = data.data.url
 					fetch("https://blog-post-fahim.herokuapp.com/post", {
 						body: JSON.stringify({
 							postBody: postBody,
