@@ -42,7 +42,7 @@ const BlogDetails = () => {
 			postId,
 			time,
 		}
-		fetch("https://blog-post-fahim.herokuapp.com/comment", {
+		fetch("https://blog-post-fahim.herokuapp.com/comment/", {
 			method: "POST",
 			headers: {
 				"content-type": "application/json",
@@ -103,11 +103,13 @@ const BlogDetails = () => {
 						</div>
 						<div className="border-b border-gray-100"></div>
 						<div className="text-gray-400 font-medium text-sm mb-7 mt-6 mx-3 px-2">
-							{post.image && <img
-								className="rounded"
-								src={post.image}
-								alt=""
-							/>}
+							{post.image && (
+								<img
+									className="rounded"
+									src={post.image}
+									alt=""
+								/>
+							)}
 						</div>
 						<div className="text-gray-600 font-semibold text-lg mb-2 mx-3 px-2">
 							{post.postTitle}
@@ -171,7 +173,7 @@ const BlogDetails = () => {
 					<div
 						key={index}
 						data-aos="fade-down"
-						data-aos-delay={300 * index}
+						data-aos-delay={50 * index}
 						className="px-4 py-1 mb-4 bg-gray-100 rounded-lg dark:bg-gray-600 lg:w-[576px] w-full"
 					>
 						<div className="flex items-center flex-col">

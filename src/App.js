@@ -7,6 +7,7 @@ import EditPost from "./Pages/EditPost"
 import Home from "./Pages/Home"
 import Login from "./Pages/Login"
 import ManagePost from "./Pages/ManagePost/ManagePost"
+import Notification from "./Pages/Notification"
 import Profile from "./Pages/Profile"
 import Register from "./Pages/Register"
 import SendResetPassMail from "./Pages/SendResetPassMail"
@@ -79,6 +80,7 @@ function App() {
 						}
 					></Route>
 					<Route path={"/"} element={<Home></Home>}></Route>
+					<Route path={"/notifications"} element={<Notification />} />
 				</Routes>
 				<Toaster></Toaster>
 				<Footer></Footer>

@@ -5,15 +5,18 @@ import {
 	MdAccountBox,
 	MdLogin,
 	MdLogout,
+	MdNotifications,
 } from "react-icons/md"
 import { useAuthState } from "react-firebase-hooks/auth"
 import auth from "../../firebase.init"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { signOut } from "firebase/auth"
+import useLoadNotifications from "../../hooks/useLoadNotification"
 const Header = ({ darkModeHandler, isDarkMode }) => {
 	const [user] = useAuthState(auth)
 	const location = useLocation()
 	const navigate = useNavigate()
+	const [notifications] = useLoadNotifications()
 	return (
 		<div className="h-[8vh] sticky z-50 top-0 bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl shadow-blue-200 dark:shadow-gray-700 shadow-2xl">
 			<header className="h-full px-2 flex items-center justify-between container mx-auto">
@@ -58,6 +61,23 @@ const Header = ({ darkModeHandler, isDarkMode }) => {
 							</p>
 						)}
 					</button>
+					<span className="mr-6">
+						{user && (
+							<Link
+								to="/notifications"
+								className="flex items-center font-bold text-dark dark:text-white"
+							>
+								<span className="hidden md:block px-2">
+									Notification
+								</span>
+
+								<span class="inline-flex items-center justify-center p-1 font-bold leading-none text-red-100 bg-red-600 rounded-full">
+									<MdNotifications />
+									{notifications?.length}
+								</span>
+							</Link>
+						)}
+					</span>
 					<span className="mr-6">
 						{user && (
 							<Link
